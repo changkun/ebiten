@@ -25,7 +25,7 @@ func SetMainThread(thread Thread) {
 	theThread = thread
 }
 
-func runOnMainThread(f func() error) error {
+func RunOnMainThread(f func() error) error {
 	// The thread is nil when 1) GOOS=js or 2) using golang.org/x/mobile/gl.
 	// When golang.org/x/mobile/gl is used, all the GL functions are called via Context, which already runs on an
 	// appropriate thread.

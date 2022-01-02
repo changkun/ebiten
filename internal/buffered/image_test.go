@@ -25,7 +25,7 @@ import (
 
 var mainCh = make(chan func())
 
-func runOnMainThread(f func()) {
+func RunOnMainThread(f func()) {
 	ch := make(chan struct{})
 	mainCh <- func() {
 		f()
@@ -92,7 +92,7 @@ var testSetBeforeMainResult = func() testResult {
 
 	ch := make(chan color.RGBA, 1)
 	go func() {
-		runOnMainThread(func() {
+		RunOnMainThread(func() {
 			ch <- img.At(0, 0).(color.RGBA)
 		})
 	}()
@@ -121,7 +121,7 @@ var testDrawImageBeforeMainResult = func() testResult {
 
 	ch := make(chan color.RGBA, 1)
 	go func() {
-		runOnMainThread(func() {
+		RunOnMainThread(func() {
 			ch <- dst.At(0, 0).(color.RGBA)
 		})
 	}()
@@ -182,7 +182,7 @@ var testDrawTrianglesBeforeMainResult = func() testResult {
 
 	ch := make(chan color.RGBA, 1)
 	go func() {
-		runOnMainThread(func() {
+		RunOnMainThread(func() {
 			ch <- dst.At(0, 0).(color.RGBA)
 		})
 	}()
@@ -211,7 +211,7 @@ var testSetAndFillBeforeMainResult = func() testResult {
 
 	ch := make(chan color.RGBA, 1)
 	go func() {
-		runOnMainThread(func() {
+		RunOnMainThread(func() {
 			ch <- img.At(0, 0).(color.RGBA)
 		})
 	}()
@@ -247,7 +247,7 @@ var testSetAndReplacePixelsBeforeMainResult = func() testResult {
 
 	ch := make(chan color.RGBA, 1)
 	go func() {
-		runOnMainThread(func() {
+		RunOnMainThread(func() {
 			ch <- img.At(0, 0).(color.RGBA)
 		})
 	}()
@@ -287,7 +287,7 @@ var testReplacePixelsAndModifyBeforeMainResult = func() testResult {
 
 	ch := make(chan color.RGBA, 1)
 	go func() {
-		runOnMainThread(func() {
+		RunOnMainThread(func() {
 			ch <- img.At(0, 0).(color.RGBA)
 		})
 	}()
